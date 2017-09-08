@@ -8,20 +8,28 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+Object.defineProperty(exports, "__esModule", { value: true });
 var core_1 = require("@angular/core");
 var router_1 = require("@angular/router");
 var hero_service_1 = require("./hero.service");
+var hero_address_service_1 = require("./hero-address-service");
 var HeroesComponent = (function () {
-    function HeroesComponent(router, heroService) {
+    function HeroesComponent(router, heroService, heroAddressService) {
         this.router = router;
         this.heroService = heroService;
+        this.heroAddressService = heroAddressService;
     }
     HeroesComponent.prototype.getHeroes = function () {
+        //this.heroService.getHeroes().then(heroes => this.heroes = heroes);
+    };
+    HeroesComponent.prototype.getHeroAddresses = function () {
         var _this = this;
-        this.heroService.getHeroes().then(function (heroes) { return _this.heroes = heroes; });
+        this.heroAddressService.getAddresses().subscribe(function (res) { return _this.addresses = res; });
+        console.log(this.addresses);
     };
     HeroesComponent.prototype.ngOnInit = function () {
         this.getHeroes();
+        this.getHeroAddresses();
     };
     HeroesComponent.prototype.onSelect = function (hero) {
         this.selectedHero = hero;
@@ -38,7 +46,8 @@ HeroesComponent = __decorate([
         styleUrls: ['./heroes.component.css']
     }),
     __metadata("design:paramtypes", [router_1.Router,
-        hero_service_1.HeroService])
+        hero_service_1.HeroService,
+        hero_address_service_1.HeroAddressService])
 ], HeroesComponent);
 exports.HeroesComponent = HeroesComponent;
 //# sourceMappingURL=heroes.component.js.map

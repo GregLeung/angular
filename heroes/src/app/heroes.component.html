@@ -12,3 +12,10 @@
   </h2>
   <button (click)="gotoDetail()">View Details</button>
 </div>
+
+
+<ul class="heroes">
+  <li *ngFor="let hero of addresses">
+    <span class="badge">{{hero}}</span>
+  </li>
+</ul>
